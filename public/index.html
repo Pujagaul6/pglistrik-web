@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+
+<!-- Dark Mode Toggle -->
+<button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+
   <header class="site-header" id="top">
     <nav class="nav wrap" aria-label="Navigasi utama">
       <a class="brand" href="#top" aria-label="Puja Gayatri Listrik Home">
@@ -148,5 +152,32 @@
   </div>
 
   <script src="/app.js"></script>
+
+<script>
+// ─── DARK MODE ───────────────────────────────────
+function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById('themeBtn');
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        btn.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        btn.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Load saved theme
+(function() {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        document.getElementById('themeBtn').textContent = '☀️';
+    }
+})();
+</script>
+
 </body>
 </html>
