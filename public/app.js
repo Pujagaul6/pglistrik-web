@@ -266,3 +266,20 @@ bindSearch();
 bindMenu();
 bindProductModal();
 loadProducts();
+
+// ─── DARK MODE ───────────────────────────────────
+function toggleTheme() {
+  const body = document.body;
+  if (body.getAttribute('data-theme') === 'dark') {
+    body.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'light');
+  } else {
+    body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+  }
+}
+(function() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') document.body.setAttribute('data-theme', 'dark');
+  document.getElementById('themeBtn').addEventListener('click', toggleTheme);
+})();
